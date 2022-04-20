@@ -2,16 +2,8 @@
 
 set -eu
 
-# (For future templating...)
-#COMMIT_MESSAGE="${INPUT_COMMIT_MESSAGE}"
-
-# Sanitize the INPUT_TAG_VALUE. If the tag looks like a github reference
-# (refs/tags/* or refs/heads/*) then strip out the prefix and just use the
-# last portion of the string.
 INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/tags\//}
 INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/heads\//}
-#INPUT_COMMIT_BRANCH=${INPUT_COMMIT_BRANCH//refs\/heads\//}
-#INPUT_COMMIT_TAG=${INPUT_COMMIT_TAG//refs\/tags\//}
 
 git config --global --add safe.directory /github/workspace;
 
