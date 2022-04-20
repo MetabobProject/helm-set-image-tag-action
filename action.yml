@@ -26,33 +26,6 @@ inputs:
     required: true
     default: patch
 
-  helm_docs:
-    description: >-
-      Enables or disables (`true` or `false`) automated updating of the Helm
-      documentation.
-    required: true
-    default: 'true'
-
-  commit_branch:
-    description: >-
-      If supplied, the job will check out this branch before making any git
-      commits. This is useful when you are running this action on a Tag
-      trigger rather than a branch or pull-request trigger.
-    required: false
-
-  commit_tag:
-    description: >-
-      If supplied, the job will create a new branch pointing to the commit that
-      has just been created as part of the release process. If you do not set
-      $commit_branch, you must set $commit_tag or the final `git push` will
-      fail.
-    required: false
-
-  commit_message:
-    description: Commit message
-    required: false
-    default: Automated commit on behalf-of ${{ github.actor }}
-
   force:
     description: >-
       If true, then the git tag event (and the git push) will be forced. This
@@ -60,10 +33,6 @@ inputs:
     default: true
     required: true
 
-  commit_options:
-    description: Commit options (eg. --no-verify)
-    required: false
-    default: ''
 
   verbose:
     description: >-
