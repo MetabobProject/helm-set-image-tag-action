@@ -26,10 +26,13 @@ inputs:
     required: true
     default: patch
     
-  commit_message:
-    description: Commit message
+  commit_tag:
+    description: >-
+      If supplied, the job will create a new branch pointing to the commit that
+      has just been created as part of the release process. If you do not set
+      $commit_branch, you must set $commit_tag or the final `git push` will
+      fail.
     required: false
-    default: Automated commit on behalf-of ${{ github.actor }}
 
   force:
     description: >-
