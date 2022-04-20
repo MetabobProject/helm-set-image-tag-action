@@ -9,8 +9,8 @@ LABEL "repository"="https://github.com/rishindra23/helm-set-image-tag-action"
 LABEL "homepage"="https://github.com/rishindra23/helm-set-image-tag-action"
 LABEL "maintainer"="diranged"
 
-#RUN apk --no-cache add bash yq git patch py-pip
-RUN apk --no-cache add bash yq patch py-pip
+RUN apk --no-cache add bash yq git patch py-pip
+#RUN apk --no-cache add bash yq patch py-pip
 RUN pip install pybump yamale yamllint
 
 
