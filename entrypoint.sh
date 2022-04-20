@@ -106,5 +106,5 @@ fi
 
 _update_values
 _update_chart_version
-_update_helm_docs
+
 
