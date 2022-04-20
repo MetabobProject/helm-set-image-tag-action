@@ -25,6 +25,11 @@ inputs:
       `patch`, `minor`, `major`, or `null` to skip bumping the Chart version.
     required: true
     default: patch
+    
+  commit_message:
+    description: Commit message
+    required: false
+    default: Automated commit on behalf-of ${{ github.actor }}
 
   force:
     description: >-
