@@ -12,7 +12,6 @@ LABEL "maintainer"="diranged"
 RUN apk --no-cache add bash yq git patch py-pip
 RUN pip install pybump yamale yamllint
 
-RUN helm plugin install https://github.com/chartmuseum/helm-push 
 
 COPY --from=alpine/helm:latest /usr/bin/helm /usr/bin/helm
 COPY --from=jnorwood/helm-docs:v1.5.0 /usr/bin/helm-docs /usr/bin/helm-docs
