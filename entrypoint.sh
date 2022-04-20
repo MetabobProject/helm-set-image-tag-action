@@ -3,7 +3,7 @@
 set -eu
 
 # (For future templating...)
-COMMIT_MESSAGE="${INPUT_COMMIT_MESSAGE}"
+#COMMIT_MESSAGE="${INPUT_COMMIT_MESSAGE}"
 
 # Sanitize the INPUT_TAG_VALUE. If the tag looks like a github reference
 # (refs/tags/* or refs/heads/*) then strip out the prefix and just use the
