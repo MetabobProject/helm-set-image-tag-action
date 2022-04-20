@@ -13,11 +13,6 @@ INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/heads\//}
 INPUT_COMMIT_BRANCH=${INPUT_COMMIT_BRANCH//refs\/heads\//}
 INPUT_COMMIT_TAG=${INPUT_COMMIT_TAG//refs\/tags\//}
 
-
-# This is a workaround for changes in git which introduced strict defaults to
-# address https://ubuntu.com/security/CVE-2022-24765.
-# In essence, git changed how it executes on multi-user machine/situations, and
-# fails when the  directory is owned by a different user than the one executing.
 git config --global --add safe.directory /github/workspace;
 
 if [ "${INPUT_FORCE}" == "true" ]; then
@@ -46,58 +41,6 @@ _update_chart_version() {
   echo "Bumping chart version... (bump_level: ${INPUT_BUMP_LEVEL})"
   pybump bump --file $(dirname ${INPUT_VALUES_FILES})/Chart.yaml  --level ${INPUT_BUMP_LEVEL}
 }
-
-_update_helm_docs() {
-  [ "${INPUT_HELM_DOCS}" == 'true' ] || return 0
-  echo "Running helm-docs... (helm_docs: ${INPUT_HELM_DOCS})"
-  helm-docs --chart-search-root $(dirname ${INPUT_VALUES_FILES})
-}
-
-_git_switch_to_branch(){
-  [ -n "${INPUT_COMMIT_BRANCH}" ] || return 0
-  git fetch --depth=1
-  git checkout ${INPUT_COMMIT_BRANCH}
-}
-
-_git_add() {
-  # Add in all the changes we've found...
-  git add .
-
-  # Print out the git diff
-  echo "--- Git Diff ---"
-  git diff --cached
-}
-
-_git_commit() {
-  [ "${INPUT_DRY}" == 'false' ] || return 0
-
-  # shellcheck disable=SC2206
-  local INPUT_COMMIT_OPTIONS_ARRAY=( $INPUT_COMMIT_OPTIONS );
-  echo "Committing back to the branch"
-
-  # Check that there is a diff to be committed.. 
-  git diff --cached --exit-code --quiet && return 0
-
-  git \
-    -c user.name="${GITHUB_ACTION}" \
-    -c user.email="actions@github.com" \
-    commit \
-    --author "${GITHUB_ACTOR} <${GITHUB_ACTOR}@users.noreply.github.com>" \
-    --message "${COMMIT_MESSAGE}" \
-    ${INPUT_COMMIT_OPTIONS:+"${INPUT_COMMIT_OPTIONS_ARRAY[@]}"};
-}
-
-_git_tag() {
-  [ -n "${INPUT_COMMIT_TAG}" ] || return 0
-  echo "Creating tag ${INPUT_COMMIT_TAG}..."
-  git tag ${INPUT_COMMIT_TAG} ${FORCE_OPT}
-}
-
-_git_push() {
-  [ -n "${INPUT_COMMIT_BRANCH}" ] && git push origin "${INPUT_COMMIT_BRANCH}" "${FORCE_OPT}"
-  [ -n "${INPUT_COMMIT_TAG}" ] && git push origin "${INPUT_COMMIT_TAG}" "${FORCE_OPT}"
-}
-
 
 # Be really loud and verbose if we're running in VERBOSE mode
 if [ "${INPUT_VERBOSE}" == "true" ]; then
