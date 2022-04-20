@@ -10,7 +10,7 @@ set -eu
 # last portion of the string.
 INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/tags\//}
 INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/heads\//}
-INPUT_COMMIT_BRANCH=${INPUT_COMMIT_BRANCH//refs\/heads\//}
+#INPUT_COMMIT_BRANCH=${INPUT_COMMIT_BRANCH//refs\/heads\//}
 INPUT_COMMIT_TAG=${INPUT_COMMIT_TAG//refs\/tags\//}
 
 git config --global --add safe.directory /github/workspace;
