@@ -26,35 +26,35 @@ inputs:
     required: true
     default: patch
     
-  commit_tag:
-    description: >-
-      If supplied, the job will create a new branch pointing to the commit that
-      has just been created as part of the release process. If you do not set
-      $commit_branch, you must set $commit_tag or the final `git push` will
-      fail.
-    required: false
+  #commit_tag:
+   # description: >-
+    #  If supplied, the job will create a new branch pointing to the commit that
+     # has just been created as part of the release process. If you do not set
+      #$commit_branch, you must set $commit_tag or the final `git push` will
+      #fail.
+    #required: false
 
-  force:
-    description: >-
-      If true, then the git tag event (and the git push) will be forced. This
-      will overwrite existing tags.
-    default: true
-    required: true
+  #force:
+   # description: >-
+    #  If true, then the git tag event (and the git push) will be forced. This
+     # will overwrite existing tags.
+    #default: true
+    #required: true
 
 
-  verbose:
-    description: >-
-      If set to 'true', then the 'set -x' flag will be turned on to help debug
-      the action.
-    required: false
-    default: 'false'
+  #verbose:
+   # description: >-
+    #  If set to 'true', then the 'set -x' flag will be turned on to help debug
+     # the action.
+    #required: false
+    #default: 'false'
 
-  dry:
-    description: >-
-      If set to 'true', then at the end of the work a Git diff will be printed
-      out, but no git push will happen.
-    required: false
-    default: 'false'
+#  dry:
+ #   description: >-
+  #    If set to 'true', then at the end of the work a Git diff will be printed
+   #   out, but no git push will happen.
+    #required: false
+    #default: 'false'
 
 runs:
   using: docker
