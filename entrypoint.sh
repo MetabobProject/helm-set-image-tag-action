@@ -35,9 +35,9 @@ _update_chart_version() {
 }
 
 # Be really loud and verbose if we're running in VERBOSE mode
-if [ "${INPUT_VERBOSE}" == "true" ]; then
-  set -x
-fi
+#if [ "${INPUT_VERBOSE}" == "true" ]; then
+#  set -x
+#fi
 
 _update_values
 _update_chart_version
