@@ -7,11 +7,11 @@ INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/heads\//}
 
 git config --global --add safe.directory /github/workspace;
 
-if [ "${INPUT_FORCE}" == "true" ]; then
-  FORCE_OPT="--force"
-else
-  FORCE_OPT=""
-fi
+#if [ "${INPUT_FORCE}" == "true" ]; then
+ # FORCE_OPT="--force"
+#else
+ # FORCE_OPT=""
+#fi
 
 _update_values() {
   # Take the CSV-submitted list of Values "tag" keys and turn it into an
