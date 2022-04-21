@@ -7,12 +7,6 @@ INPUT_TAG_VALUE=${INPUT_TAG_VALUE//refs\/heads\//}
 
 git config --global --add safe.directory /github/workspace;
 
-#if [ "${INPUT_FORCE}" == "true" ]; then
- # FORCE_OPT="--force"
-#else
- # FORCE_OPT=""
-#fi
-
 _update_values() {
   # Take the CSV-submitted list of Values "tag" keys and turn it into an
   # array. For each of these values, we'll go and update the yaml.
@@ -33,11 +27,6 @@ _update_chart_version() {
   echo "Bumping chart version... (bump_level: ${INPUT_BUMP_LEVEL})"
   pybump bump --file $(dirname ${INPUT_VALUES_FILES})/Chart.yaml  --level ${INPUT_BUMP_LEVEL}
 }
-
-# Be really loud and verbose if we're running in VERBOSE mode
-#if [ "${INPUT_VERBOSE}" == "true" ]; then
-#  set -x
-#fi
 
 _update_values
 _update_chart_version
