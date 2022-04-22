@@ -24,7 +24,7 @@ inputs:
     description: >-
       `patch`, `minor`, `major`, or `null` to skip bumping the Chart version.
     required: true
-    default: patch
+    default: null
     
 
 runs:
